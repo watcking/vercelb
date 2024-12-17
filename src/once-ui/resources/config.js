@@ -23,8 +23,8 @@ const meta = {
 
 // default open graph data
 const og = {
-    title: 'Once UI for Next.js',
-    description: 'We let designers code and developers design.',
+    title: 'Official Website',
+    description: 'To explore the blockchain-based projects and technical contributions, please visit',
     type: 'website'
 }
 
@@ -32,9 +32,9 @@ const og = {
 const schema = {
     logo: '',
     type: 'Organization',
-    name: 'One UI',
-    description: 'Once UI is an open-source design system and component library for Next.js.',
-    email: 'lorant@once-ui.com'
+    name: 'Official Website ',
+    description: 'To explore the blockchain-based projects and technical contributions, please visit',
+    email: 'cskngrcy2024@gmail.com'
 }
 
 // social links
