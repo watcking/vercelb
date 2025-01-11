@@ -40,7 +40,7 @@ export default function Home() {
       alignItems="center"
       flex={1}
       style={{
-        background: 'url(https://pixabay.com/get/g91c69c121b4e72b5c816abc3e3c3a8b5e86e1c435a9baf1e5a208b4b05251c81df16178dc736f5ad9f0a58e7ecdbfdfd_1920.jpg)',
+        background: 'url(/background.jpg)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
