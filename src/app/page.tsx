@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Heading, Text, Flex, Button, Grid, Icon } from '@/once-ui/components';
 import Link from 'next/link';
-import Validators from "../components/Validators"; // Validators bileşeni eklendi
+import Validators from "../components/Validators";
 
 export default function Home() {
   const links = [
@@ -29,90 +28,57 @@ export default function Home() {
     }, 50); // 50ms per character
 
     return () => clearInterval(interval);
-  }, [fullText]); // fullText bağımlılığı eklendi
+  }, [fullText]);
 
   return (
-    <Flex
-      fillWidth
-      paddingTop="l"
-      paddingX="l"
-      direction="column"
-      alignItems="center"
-      flex={1}
+    <div
       style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         background: 'url(/background.jpg)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
+        minHeight: '100vh',
+        padding: '20px',
       }}
     >
       {/* Sosyal medya butonları */}
-      <Flex as="header" fillWidth justifyContent="flex-end" paddingX="l" paddingY="s" gap="12">
-        <Button href="https://github.com/brkcinar" prefixIcon="github" size="l" variant="tertiary">
-          GitHub
-        </Button>
-        <Button href="https://x.com/brkkcinar" prefixIcon="twitter" size="l" variant="tertiary">
-          Twitter
-        </Button>
-        <Button href="https://www.t.me/brkcinar" prefixIcon="telegram" size="l" variant="tertiary">
-          Telegram
-        </Button>
-      </Flex>
+      <header style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', gap: '12px' }}>
+        <a href="https://github.com/brkcinar" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://x.com/brkkcinar" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a href="https://www.t.me/brkcinar" target="_blank" rel="noopener noreferrer">Telegram</a>
+      </header>
 
       {/* Ana içerik */}
-      <Flex as="section" fillWidth maxWidth={68} direction="row" alignItems="center" flex={1} gap="24">
-        <Flex flex={1} alignItems="center" justifyContent="center">
-          <img
-            src="/coconode.png"
-            alt="My Logo"
-            style={{ width: '100%', maxWidth: '300px', height: 'auto' }} // Resim boyutları
-          />
-        </Flex>
-
-        <Flex flex={1} alignItems="center" justifyContent="center">
-          <Heading
-            wrap="balance"
-            variant="display-strong-xs"
-            style={{
-              textAlign: 'center',
-              fontFamily: 'monospace',
-              color: '#FFFFFF',
-              fontSize: '1.5rem',
-              lineHeight: '2rem',
-            }}
-          >
-            {displayText}
-          </Heading>
-        </Flex>
-      </Flex>
+      <main style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '24px' }}>
+        <img
+          src="/coconode.png"
+          alt="My Logo"
+          style={{ width: '300px', height: 'auto' }}
+        />
+        <h1 style={{ textAlign: 'center', color: '#FFFFFF', fontFamily: 'monospace', fontSize: '1.5rem', lineHeight: '2rem' }}>
+          {displayText}
+        </h1>
+      </main>
 
       {/* Validators bileşenini ekleme */}
-      <Flex fillWidth direction="column" alignItems="center" style={{ marginTop: '40px', padding: '20px' }}>
+      <div style={{ marginTop: '40px', padding: '20px', width: '100%' }}>
         <Validators />
-      </Flex>
+      </div>
 
-      <Flex
-        as="footer"
-        fillWidth
-        paddingX="l"
-        paddingY="m"
-        justifyContent="space-between"
-        style={{ marginTop: '24px' }}
-      >
-        <Grid
-          radius="l"
-          border="neutral-medium"
-          borderStyle="solid-1"
-          columns="repeat(3, 1fr)"
-          tabletColumns="1col"
-          mobileColumns="1col"
-          fillWidth
-        >
-          {links.map((link) => (
-            <Link target="_blank" style={{ padding: 'var(--responsive-space-l)' }} key={link.href} href={link.href}>
-              <Flex fillWidth paddingY="8" gap="8" direction="column">
-                <Flex fillWidth gap="12" alignItems="center">
-                  <Text variant="body-strong-m" onBackground="neutral-strong">
-                    {link.title}
-                  </Text>
-                  <Icon size=
+      {/* Footer */}
+      <footer style={{ marginTop: '24px', textAlign: 'center', width: '100%' }}>
+        {links.map((link) => (
+          <div key={link.href}>
+            <Link href={link.href}>
+              <a>{link.title}</a>
+            </Link>
+          </div>
+        ))}
+      </footer>
+    </div>
+  );
+}
