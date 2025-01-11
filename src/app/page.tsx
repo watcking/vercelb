@@ -29,7 +29,7 @@ export default function Home() {
     }, 50); // 50ms per character
 
     return () => clearInterval(interval);
-  }, []);
+  }, [fullText]); // fullText bağımlılığı eklendi
 
   return (
     <Flex
@@ -115,18 +115,4 @@ export default function Home() {
                   <Text variant="body-strong-m" onBackground="neutral-strong">
                     {link.title}
                   </Text>
-                  <Icon size="s" name="arrowUpRight" />
-                </Flex>
-                {link.description && (
-                  <Text variant="body-default-s" onBackground="neutral-weak">
-                    {link.description}
-                  </Text>
-                )}
-              </Flex>
-            </Link>
-          ))}
-        </Grid>
-      </Flex>
-    </Flex>
-  );
-}
+                  <Icon size=
