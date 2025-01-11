@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Heading, Text, Flex, Button, Grid, Icon, LetterFx } from '@/once-ui/components';
+import { Heading, Text, Flex, Button, Grid, Icon } from '@/once-ui/components';
 import Link from 'next/link';
 
 export default function Home() {
@@ -32,7 +32,19 @@ export default function Home() {
   }, []);
 
   return (
-    <Flex fillWidth paddingTop="l" paddingX="l" direction="column" alignItems="center" flex={1} style={{ backgroundColor: '#2C2C2C' }}>
+    <Flex
+      fillWidth
+      paddingTop="l"
+      paddingX="l"
+      direction="column"
+      alignItems="center"
+      flex={1}
+      style={{
+        background: 'linear-gradient(to bottom, #2C2C2C, #1A1A1A)', // Desenli koyu gri
+        backgroundImage: 'url(/pattern.png)', // Desen dosyası
+        backgroundBlendMode: 'multiply', // Desen ve rengi birleştirir
+      }}
+    >
       {/* Sosyal medya butonları */}
       <Flex as="header" fillWidth justifyContent="flex-end" paddingX="l" paddingY="s" gap="12">
         <Button href="https://github.com/brkcinar" prefixIcon="github" size="l" variant="tertiary">
