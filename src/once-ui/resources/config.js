@@ -16,7 +16,7 @@ const style = {
 
 // default metadata
 const meta = {
-    title: 'CocoNode',
+    title: 'HibuNode',
     description: '...'
 }
 
