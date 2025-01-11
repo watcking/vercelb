@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -6,22 +7,22 @@ import Link from 'next/link';
 
 export default function Home() {
   const links = [
-    { href: "http://explorer.coco-node.com", title: "Explorer", description: "" },
-    { href: "http://www.coco-node.com/", title: "Services", description: "" },
-    { href: "http://www.coco-node.com/", title: "Introductions", description: "" },
+    { href: "http://explorer.hibunode.com", title: "Explorer", description: "" },
+    { href: "http://www.hibunode.com/", title: "Services", description: "" },
+    { href: "http://www.hibunode.com/", title: "Introductions", description: "" },
   ];
 
   return (
-    <Flex fillWidth paddingTop="l" paddingX="l" direction="column" alignItems="center" flex={1}>
+    <Flex fillWidth paddingTop="l" paddingX="l" direction="column" alignItems="center" flex={1} style={{ backgroundColor: '#f0f0f0' }}>
       {/* Sosyal medya butonları */}
       <Flex as="header" fillWidth justifyContent="flex-end" paddingX="l" paddingY="s" gap="12">
-        <Button href="https://github.com/nikolorenzoo" prefixIcon="github" size="l" variant="tertiary">
+        <Button href="https://github.com/brkcinar" prefixIcon="github" size="l" variant="tertiary">
           GitHub
         </Button>
-        <Button href="https://x.com/Coskungurcayy" prefixIcon="twitter" size="l" variant="tertiary">
+        <Button href="https://x.com/brkkcinar" prefixIcon="twitter" size="l" variant="tertiary">
           Twitter
         </Button>
-        <Button href="https://www.t.me/nikolorenzo" prefixIcon="telegram" size="l" variant="tertiary">
+        <Button href="https://www.t.me/brkcinar" prefixIcon="telegram" size="l" variant="tertiary">
           Telegram
         </Button>
       </Flex>
@@ -42,7 +43,7 @@ export default function Home() {
               <Heading wrap="balance" variant="display-strong-xs" style={{ textAlign: 'center', fontFamily: 'monospace' }}>
                 <div style={{ marginTop: '150px' }}>
                   <LetterFx trigger="instant">
-                    The crypto world is an ecosystem that combines financial freedom and digital innovation with decentralization.
+                    Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.
                   </LetterFx>
                 </div>
               </Heading>
