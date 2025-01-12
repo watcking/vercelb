@@ -13,7 +13,7 @@ export default function Home() {
   ];
 
   const fullText =
-    "Bllockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
+    "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
   const [displayText, setDisplayText] = useState('');
 
   useEffect(() => {
