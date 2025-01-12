@@ -5,9 +5,9 @@ import Validators from "../components/Validators";
 
 export default function Home() {
   const links = [
-    { href: "http://explorer.hibunode.com", title: "Explorer", description: "" },
-    { href: "http://www.hibunode.com/", title: "Services", description: "" },
-    { href: "http://www.hibunode.com/", title: "Introductions", description: "" },
+    { href: "http://explorer.hibunode.com", title: "Explorer" },
+    { href: "http://www.hibunode.com/", title: "Services" },
+    { href: "http://www.hibunode.com/", title: "Introductions" },
   ];
 
   const fullText =
@@ -50,28 +50,13 @@ export default function Home() {
           gap: '12px',
         }}
       >
-        <a
-          href="https://github.com/brkcinar"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: '#FFFFFF', textDecoration: 'none' }}
-        >
+        <a href="https://github.com/brkcinar" target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', textDecoration: 'none' }}>
           GitHub
         </a>
-        <a
-          href="https://x.com/brkkcinar"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: '#FFFFFF', textDecoration: 'none' }}
-        >
+        <a href="https://x.com/brkkcinar" target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', textDecoration: 'none' }}>
           Twitter
         </a>
-        <a
-          href="https://www.t.me/brkcinar"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: '#FFFFFF', textDecoration: 'none' }}
-        >
+        <a href="https://www.t.me/brkcinar" target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', textDecoration: 'none' }}>
           Telegram
         </a>
       </header>
@@ -88,14 +73,28 @@ export default function Home() {
           color: '#FFFFFF',
         }}
       >
-        <img
-          src="/coconode.png"
-          alt="My Logo"
-          style={{ maxWidth: '300px', marginBottom: '20px' }}
-        />
-        <h1 style={{ fontSize: '1.5rem', lineHeight: '2rem', fontFamily: 'monospace' }}>
-          {displayText}
-        </h1>
+        {/* Resmi Sol Üste Taşıyoruz */}
+        <div
+          style={{
+            position: 'relative', // Konumlandırmayı aktif ediyoruz
+            top: '-50px', // Yukarı taşır
+            left: '-50px', // Sola taşır
+            marginBottom: '20px', // Alt boşluk ekler
+          }}
+        >
+          <img
+            src="/coconode.png"
+            alt="My Logo"
+            style={{
+              maxWidth: '200px', // Resim boyutu (isteğe bağlı)
+              height: 'auto',
+              borderRadius: '10px', // Hafif yuvarlatılmış köşeler
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Gölge
+            }}
+          />
+        </div>
+
+        <h1 style={{ fontSize: '1.5rem', lineHeight: '2rem', fontFamily: 'monospace' }}>{displayText}</h1>
       </main>
 
       {/* Validators */}
@@ -109,25 +108,34 @@ export default function Home() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          flexWrap: 'wrap',
           backgroundColor: '#000000',
           padding: '20px 0',
+          gap: '20px',
         }}
       >
         {links.map((link) => (
-          <a
+          <div
             key={link.href}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
             style={{
-              margin: '0 15px',
-              color: '#00FFFF',
-              textDecoration: 'none',
-              fontWeight: 'bold',
+              backgroundColor: '#1a1a1a',
+              borderRadius: '10px',
+              padding: '20px',
+              textAlign: 'center',
+              minWidth: '150px',
+              maxWidth: '200px',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             }}
           >
-            {link.title}
-          </a>
+            <img
+              src={`/icons/${link.title.toLowerCase()}.png`}
+              alt={`${link.title} icon`}
+              style={{ width: '50px', height: '50px', marginBottom: '10px' }}
+            />
+            <a href={link.href} target="_blank" rel="noopener noreferrer" style={{ color: '#00FFFF', textDecoration: 'none', fontWeight: 'bold' }}>
+              {link.title}
+            </a>
+          </div>
         ))}
       </footer>
     </div>
