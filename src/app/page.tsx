@@ -14,7 +14,7 @@ export default function Home() {
 
   const fullText =
     "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
-  const [displayText, setDisplayText] = useState(''); // Yazı başlangıç değeri boş string
+  const [displayText, setDisplayText] = useState(''); // Başlangıç değeri boş string
 
   useEffect(() => {
     let index = 0;
@@ -24,9 +24,9 @@ export default function Home() {
         setDisplayText((prev) => prev + fullText[index]);
         index++;
       } else {
-        clearInterval(interval); // Yazı tamamlanınca durdur
+        clearInterval(interval); // Tamamlanınca durdur
       }
-    }, 50); // 50ms per karakter
+    }, 50); // Her harf için 50ms gecikme
 
     return () => clearInterval(interval);
   }, [fullText]);
@@ -46,7 +46,7 @@ export default function Home() {
         backgroundPosition: 'center',
       }}
     >
-      {/* Sosyal medya butonları */}
+      {/* Sosyal Medya Butonları */}
       <Flex as="header" fillWidth justifyContent="flex-end" paddingX="l" paddingY="s" gap="12">
         <Button href="https://github.com/brkcinar" prefixIcon="github" size="l" variant="tertiary">
           GitHub
@@ -59,15 +59,15 @@ export default function Home() {
         </Button>
       </Flex>
 
-      {/* Ana içerik */}
+      {/* Logo ve Yazı Alanı */}
       <Flex as="section" fillWidth maxWidth={68} direction="row" alignItems="center" flex={1} gap="24">
-        {/* Sol Üstteki Resim */}
+        {/* Logo */}
         <Flex
           style={{
             position: 'absolute',
-            left: '25%', // Sayfayı 4 parçaya böldük, ilk çizgi için %25
-            top: '20%', // Resmi biraz yukarı taşıdık
-            transform: 'translate(-50%, 0)', // Tam merkeze hizalama
+            left: '16.6%', // 6 parçaya böldük; en soldaki çizgi için %16.6
+            top: '20%', // Yukarıdan %20 uzaklık
+            transform: 'translate(-50%, 0)', // Tam hizalama
             zIndex: 2,
           }}
         >
@@ -75,7 +75,7 @@ export default function Home() {
             src="/coconode.png"
             alt="My Logo"
             style={{
-              width: '200px', // Resmi büyüttük
+              width: '250px', // Logoyu büyüttük
               height: 'auto',
               borderRadius: '10px',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -83,8 +83,15 @@ export default function Home() {
           />
         </Flex>
 
-        {/* Yazı */}
-        <Flex flex={1} alignItems="center" justifyContent="center">
+        {/* Yazı Alanı */}
+        <Flex
+          flex={1}
+          alignItems="center"
+          justifyContent="center"
+          style={{
+            marginLeft: '300px', // Logoya dokunmaması için sola boşluk eklendi
+          }}
+        >
           <Heading
             wrap="balance"
             variant="display-strong-xs"
@@ -101,47 +108,6 @@ export default function Home() {
         </Flex>
       </Flex>
 
-      {/* Validators bileşenini ekleme */}
+      {/* Validators Bileşeni */}
       <Flex fillWidth direction="column" alignItems="center" style={{ marginTop: '40px', padding: '20px' }}>
         <Validators />
-      </Flex>
-
-      <Flex
-        as="footer"
-        fillWidth
-        paddingX="l"
-        paddingY="m"
-        justifyContent="space-between"
-        style={{ marginTop: '24px' }}
-      >
-        <Grid
-          radius="l"
-          border="neutral-medium"
-          borderStyle="solid-1"
-          columns="repeat(3, 1fr)"
-          tabletColumns="1col"
-          mobileColumns="1col"
-          fillWidth
-        >
-          {links.map((link) => (
-            <Link target="_blank" style={{ padding: 'var(--responsive-space-l)' }} key={link.href} href={link.href}>
-              <Flex fillWidth paddingY="8" gap="8" direction="column">
-                <Flex fillWidth gap="12" alignItems="center">
-                  <Text variant="body-strong-m" onBackground="neutral-strong">
-                    {link.title}
-                  </Text>
-                  <Icon size="s" name="arrowUpRight" />
-                </Flex>
-                {link.description && (
-                  <Text variant="body-default-s" onBackground="neutral-weak">
-                    {link.description}
-                  </Text>
-                )}
-              </Flex>
-            </Link>
-          ))}
-        </Grid>
-      </Flex>
-    </Flex>
-  );
-}
