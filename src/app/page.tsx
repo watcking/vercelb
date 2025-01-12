@@ -1,14 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-
-// Basit Flex bileşeni tanımlandı
-const Flex = ({ children, style = {}, ...props }) => (
-  <div style={{ display: "flex", ...style }} {...props}>
-    {children}
-  </div>
-);
+import React, { useState, useEffect } from 'react';
+import { Heading, Text, Flex, Button, Grid, Icon } from '@/once-ui/components';
+import Link from 'next/link';
+import Validators from "../components/Validators"; // Validators bileşeni eklendi
 
 export default function Home() {
   const links = [
@@ -19,7 +14,7 @@ export default function Home() {
 
   const fullText =
     "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
-  const [displayText, setDisplayText] = useState("");
+  const [displayText, setDisplayText] = useState('');
 
   useEffect(() => {
     let index = 0;
@@ -29,65 +24,108 @@ export default function Home() {
         setDisplayText((prev) => prev + fullText[index]);
         index++;
       } else {
-        clearInterval(interval); // Yazı tamamlansa bileşen durur
+        clearInterval(interval); // Stop the animation when complete
       }
-    }, 50); // Her harf için 50ms gecikme
+    }, 50); // 50ms per character
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <Flex
+      fillWidth
+      paddingTop="l"
+      paddingX="l"
+      direction="column"
+      alignItems="center"
+      flex={1}
       style={{
-        flexDirection: "column",
-        alignItems: "center",
-        background: 'url("/background.jpg")',
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        padding: "20px",
+        background: 'url(/background.jpg)',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
       }}
     >
-      {/* Sosyal Medya Butonları */}
-      <Flex style={{ justifyContent: "flex-end", width: "100%", gap: "12px" }}>
-        <a href="https://github.com/brkcinar" style={{ textDecoration: "none", color: "white" }}>
+      {/* Sosyal medya butonları */}
+      <Flex as="header" fillWidth justifyContent="flex-end" paddingX="l" paddingY="s" gap="12">
+        <Button href="https://github.com/brkcinar" prefixIcon="github" size="l" variant="tertiary">
           GitHub
-        </a>
-        <a href="https://x.com/brkkcinar" style={{ textDecoration: "none", color: "white" }}>
+        </Button>
+        <Button href="https://x.com/brkkcinar" prefixIcon="twitter" size="l" variant="tertiary">
           Twitter
-        </a>
-        <a href="https://www.t.me/brkcinar" style={{ textDecoration: "none", color: "white" }}>
+        </Button>
+        <Button href="https://www.t.me/brkcinar" prefixIcon="telegram" size="l" variant="tertiary">
           Telegram
-        </a>
+        </Button>
       </Flex>
 
-      {/* Ana İçerik */}
-      <Flex style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
-        <Flex style={{ justifyContent: "center", flex: 1 }}>
+      {/* Ana içerik */}
+      <Flex as="section" fillWidth maxWidth={68} direction="row" alignItems="center" flex={1} gap="24">
+        <Flex flex={1} alignItems="center" justifyContent="center">
           <img
             src="/coconode.png"
             alt="My Logo"
-            style={{
-              width: "200px",
-              height: "auto",
-              position: "relative",
-              left: "-10%", // Sola doğru biraz kaydırıldı
-            }}
+            style={{ width: '100%', maxWidth: '300px', height: 'auto' }} // Resim boyutları
           />
         </Flex>
 
-        <Flex style={{ justifyContent: "center", flex: 2 }}>
-          <h1 style={{ fontFamily: "monospace", color: "white", textAlign: "center" }}>{displayText}</h1>
+        <Flex flex={1} alignItems="center" justifyContent="center">
+          <Heading
+            wrap="balance"
+            variant="display-strong-xs"
+            style={{
+              textAlign: 'center',
+              fontFamily: 'monospace',
+              color: '#FFFFFF',
+              fontSize: '1.5rem',
+              lineHeight: '2rem',
+            }}
+          >
+            {displayText}
+          </Heading>
         </Flex>
       </Flex>
 
-      {/* Alt Menü */}
-      <Flex style={{ marginTop: "40px", width: "100%", justifyContent: "center" }}>
-        <div>
-          <h2 style={{ color: "white" }}>Mainnet</h2>
-          <p style={{ color: "white" }}>Dimension</p>
-        </div>
+      {/* Validators bileşenini ekleme */}
+      <Flex fillWidth direction="column" alignItems="center" style={{ marginTop: '40px', padding: '20px' }}>
+        <Validators />
+      </Flex>
+
+      <Flex
+        as="footer"
+        fillWidth
+        paddingX="l"
+        paddingY="m"
+        justifyContent="space-between"
+        style={{ marginTop: '24px' }}
+      >
+        <Grid
+          radius="l"
+          border="neutral-medium"
+          borderStyle="solid-1"
+          columns="repeat(3, 1fr)"
+          tabletColumns="1col"
+          mobileColumns="1col"
+          fillWidth
+        >
+          {links.map((link) => (
+            <Link target="_blank" style={{ padding: 'var(--responsive-space-l)' }} key={link.href} href={link.href}>
+              <Flex fillWidth paddingY="8" gap="8" direction="column">
+                <Flex fillWidth gap="12" alignItems="center">
+                  <Text variant="body-strong-m" onBackground="neutral-strong">
+                    {link.title}
+                  </Text>
+                  <Icon size="s" name="arrowUpRight" />
+                </Flex>
+                {link.description && (
+                  <Text variant="body-default-s" onBackground="neutral-weak">
+                    {link.description}
+                  </Text>
+                )}
+              </Flex>
+            </Link>
+          ))}
+        </Grid>
       </Flex>
     </Flex>
   );
