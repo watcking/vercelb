@@ -2,17 +2,23 @@
 
 import React, { useState, useEffect } from "react";
 
-// Flex bileşeni yukarıda tanımlandı
+// Flex bileşeni tanımlandı
+const Flex = ({ children, style = {}, ...props }) => (
+  <div style={{ display: "flex", ...style }} {...props}>
+    {children}
+  </div>
+);
 
-const Home: React.FC = () => {
+export default function Home() {
   const links = [
-    { href: "http://explorer.hibunode.com", title: "Explorer", description: "" },
-    { href: "http://www.hibunode.com/", title: "Services", description: "" },
-    { href: "http://www.hibunode.com/", title: "Introductions", description: "" },
+    { href: "http://explorer.hibunode.com", title: "Explorer" },
+    { href: "http://www.hibunode.com/", title: "Services" },
+    { href: "http://www.hibunode.com/", title: "Introductions" },
   ];
 
   const fullText =
     "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
+
   const [displayText, setDisplayText] = useState("");
 
   useEffect(() => {
@@ -38,10 +44,8 @@ const Home: React.FC = () => {
         justifyContent: "center",
         width: "100%",
         height: "100vh",
-        background: "url(/background.jpg)",
+        background: "url(/background.jpg) no-repeat center center",
         backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
       }}
     >
       {/* Sosyal medya butonları */}
@@ -62,7 +66,7 @@ const Home: React.FC = () => {
         style={{
           position: "absolute",
           top: "100px",
-          left: "16.6%",
+          left: "16.6%", // Sayfayı 6'ya bölmek için %16.6 (1/6)
           transform: "translateX(-50%)",
         }}
       >
@@ -70,7 +74,7 @@ const Home: React.FC = () => {
           src="/coconode.png"
           alt="My Logo"
           style={{
-            width: "200px",
+            width: "250px",
             height: "auto",
           }}
         />
@@ -109,6 +113,7 @@ const Home: React.FC = () => {
             key={link.href}
             href={link.href}
             target="_blank"
+            rel="noreferrer"
             style={{
               color: "white",
               textDecoration: "none",
@@ -122,6 +127,4 @@ const Home: React.FC = () => {
       </Flex>
     </Flex>
   );
-};
-
-export default Home;
+}
