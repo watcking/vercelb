@@ -26,7 +26,7 @@ export default function Home() {
       } else {
         clearInterval(interval); // Stop the animation when complete
       }
-    }, 250); // 250ms per character
+    }, 10); // 10ms per character
 
     return () => clearInterval(interval);
   }, []);
