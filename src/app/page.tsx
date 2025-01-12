@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { Heading, Text, Flex, Button, Grid, Icon } from '@/once-ui/components';
+import Link from 'next/link';
 import Validators from "../components/Validators";
 
 export default function Home() {
   const links = [
-    { href: "http://explorer.hibunode.com", title: "Explorer" },
-    { href: "http://www.hibunode.com/", title: "Services" },
-    { href: "http://www.hibunode.com/", title: "Introductions" },
+    { href: "http://explorer.hibunode.com", title: "Explorer", description: "" },
+    { href: "http://www.hibunode.com/", title: "Services", description: "" },
+    { href: "http://www.hibunode.com/", title: "Introductions", description: "" },
   ];
 
   const fullText =
@@ -16,128 +18,129 @@ export default function Home() {
 
   useEffect(() => {
     let index = 0;
+
     const interval = setInterval(() => {
       if (index < fullText.length) {
         setDisplayText((prev) => prev + fullText[index]);
         index++;
       } else {
-        clearInterval(interval);
+        clearInterval(interval); // Stop the animation when complete
       }
-    }, 50);
+    }, 50); // 50ms per character
 
     return () => clearInterval(interval);
   }, [fullText]);
 
   return (
-    <div
+    <Flex
+      fillWidth
+      paddingTop="l"
+      paddingX="l"
+      direction="column"
+      alignItems="center"
+      flex={1}
       style={{
         background: 'url(/background.jpg)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
       }}
     >
-      {/* Sosyal Medya Butonları */}
-      <header
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          padding: '10px 20px',
-          gap: '12px',
-        }}
-      >
-        <a href="https://github.com/brkcinar" target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', textDecoration: 'none' }}>
+      {/* Sosyal medya butonları */}
+      <Flex as="header" fillWidth justifyContent="flex-end" paddingX="l" paddingY="s" gap="12">
+        <Button href="https://github.com/brkcinar" prefixIcon="github" size="l" variant="tertiary">
           GitHub
-        </a>
-        <a href="https://x.com/brkkcinar" target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', textDecoration: 'none' }}>
+        </Button>
+        <Button href="https://x.com/brkkcinar" prefixIcon="twitter" size="l" variant="tertiary">
           Twitter
-        </a>
-        <a href="https://www.t.me/brkcinar" target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', textDecoration: 'none' }}>
+        </Button>
+        <Button href="https://www.t.me/brkcinar" prefixIcon="telegram" size="l" variant="tertiary">
           Telegram
-        </a>
-      </header>
+        </Button>
+      </Flex>
 
-      {/* Ana İçerik */}
-      <main
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
-          padding: '20px',
-          color: '#FFFFFF',
-        }}
-      >
-        {/* Resmi Sol Üste Taşıyoruz */}
-        <div
+      {/* Ana içerik */}
+      <Flex as="section" fillWidth maxWidth={68} direction="row" alignItems="center" flex={1} gap="24">
+        {/* Resmi Sayfanın İlk Çizgisine Konumlandırma */}
+        <Flex
           style={{
-            position: 'relative', // Konumlandırmayı aktif ediyoruz
-            top: '-50px', // Yukarı taşır
-            left: '-50px', // Sola taşır
-            marginBottom: '20px', // Alt boşluk ekler
+            position: 'absolute',
+            left: '25%', // Sayfayı 4 parçaya böldük, ilk çizgi için %25
+            top: '20%', // Resmi biraz yukarı taşıdık
+            transform: 'translate(-50%, 0)', // Tam merkeze hizalama
+            zIndex: 2,
           }}
         >
           <img
             src="/coconode.png"
             alt="My Logo"
             style={{
-              maxWidth: '200px', // Resim boyutu (isteğe bağlı)
+              width: '150px', // Daha büyük resim için genişlik artırıldı
               height: 'auto',
-              borderRadius: '10px', // Hafif yuvarlatılmış köşeler
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Gölge
-            }}
-          />
-        </div>
-
-        <h1 style={{ fontSize: '1.5rem', lineHeight: '2rem', fontFamily: 'monospace' }}>{displayText}</h1>
-      </main>
-
-      {/* Validators */}
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <Validators />
-      </div>
-
-      {/* Footer */}
-      <footer
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          backgroundColor: '#000000',
-          padding: '20px 0',
-          gap: '20px',
-        }}
-      >
-        {links.map((link) => (
-          <div
-            key={link.href}
-            style={{
-              backgroundColor: '#1a1a1a',
               borderRadius: '10px',
-              padding: '20px',
-              textAlign: 'center',
-              minWidth: '150px',
-              maxWidth: '200px',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             }}
+          />
+        </Flex>
+
+        <Flex flex={1} alignItems="center" justifyContent="center">
+          <Heading
+            wrap="balance"
+            variant="display-strong-xs"
+            style={{
+              textAlign: 'center',
+              fontFamily: 'monospace',
+              color: '#FFFFFF',
+              fontSize: '1.5rem',
+              lineHeight: '2rem',
+            }}
           >
-            <img
-              src={`/icons/${link.title.toLowerCase()}.png`}
-              alt={`${link.title} icon`}
-              style={{ width: '50px', height: '50px', marginBottom: '10px' }}
-            />
-            <a href={link.href} target="_blank" rel="noopener noreferrer" style={{ color: '#00FFFF', textDecoration: 'none', fontWeight: 'bold' }}>
-              {link.title}
-            </a>
-          </div>
-        ))}
-      </footer>
-    </div>
+            {displayText}
+          </Heading>
+        </Flex>
+      </Flex>
+
+      {/* Validators bileşenini ekleme */}
+      <Flex fillWidth direction="column" alignItems="center" style={{ marginTop: '40px', padding: '20px' }}>
+        <Validators />
+      </Flex>
+
+      <Flex
+        as="footer"
+        fillWidth
+        paddingX="l"
+        paddingY="m"
+        justifyContent="space-between"
+        style={{ marginTop: '24px' }}
+      >
+        <Grid
+          radius="l"
+          border="neutral-medium"
+          borderStyle="solid-1"
+          columns="repeat(3, 1fr)"
+          tabletColumns="1col"
+          mobileColumns="1col"
+          fillWidth
+        >
+          {links.map((link) => (
+            <Link target="_blank" style={{ padding: 'var(--responsive-space-l)' }} key={link.href} href={link.href}>
+              <Flex fillWidth paddingY="8" gap="8" direction="column">
+                <Flex fillWidth gap="12" alignItems="center">
+                  <Text variant="body-strong-m" onBackground="neutral-strong">
+                    {link.title}
+                  </Text>
+                  <Icon size="s" name="arrowUpRight" />
+                </Flex>
+                {link.description && (
+                  <Text variant="body-default-s" onBackground="neutral-weak">
+                    {link.description}
+                  </Text>
+                )}
+              </Flex>
+            </Link>
+          ))}
+        </Grid>
+      </Flex>
+    </Flex>
   );
 }
