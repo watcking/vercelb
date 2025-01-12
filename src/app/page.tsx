@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties, PropsWithChildren } from 'react';
 import { Heading, Text, Button, Grid, Icon } from '@/once-ui/components';
 import Link from 'next/link';
-import Validators from "../components/Validators"; // Validators bileşeni eklendi
+import Validators from "../components/Validators";
 
 // Flex bileşeni tanımlandı
-const Flex = ({ children, ...props }) => (
+const Flex: React.FC<PropsWithChildren<{ style?: CSSProperties }>> = ({ children, ...props }) => (
   <div style={{ display: 'flex', ...props.style }}>
     {children}
   </div>
