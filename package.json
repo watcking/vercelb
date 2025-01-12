@@ -27,7 +27,11 @@
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
+		"@typescript-eslint/eslint-plugin": "^8.19.1",
+		"@typescript-eslint/parser": "^8.19.1",
 		"eslint": "^9.18.0",
+		"eslint-plugin-react": "^7.37.3",
+		"eslint-plugin-react-hooks": "^5.1.0",
 		"postcss-custom-media": "^10.0.7",
 		"postcss-flexbugs-fixes": "^5.0.2",
 		"typescript": "^5"
