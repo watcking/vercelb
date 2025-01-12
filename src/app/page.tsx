@@ -1,9 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Heading, Text, Flex, Button, Grid, Icon } from '@/once-ui/components';
+import { Heading, Text, Button, Grid, Icon } from '@/once-ui/components';
 import Link from 'next/link';
-import Validators from "../components/Validators";
+import Validators from "../components/Validators"; // Validators bileşeni eklendi
+
+// Flex bileşeni tanımlandı
+const Flex = ({ children, ...props }) => (
+  <div style={{ display: 'flex', ...props.style }}>
+    {children}
+  </div>
+);
 
 export default function Home() {
   const links = [
@@ -75,7 +82,7 @@ export default function Home() {
             src="/coconode.png"
             alt="My Logo"
             style={{
-              width: '250px', // Logoyu büyüttük
+              width: '300px', // Logoyu büyüttük
               height: 'auto',
               borderRadius: '10px',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -111,3 +118,44 @@ export default function Home() {
       {/* Validators Bileşeni */}
       <Flex fillWidth direction="column" alignItems="center" style={{ marginTop: '40px', padding: '20px' }}>
         <Validators />
+      </Flex>
+
+      <Flex
+        as="footer"
+        fillWidth
+        paddingX="l"
+        paddingY="m"
+        justifyContent="space-between"
+        style={{ marginTop: '24px' }}
+      >
+        <Grid
+          radius="l"
+          border="neutral-medium"
+          borderStyle="solid-1"
+          columns="repeat(3, 1fr)"
+          tabletColumns="1col"
+          mobileColumns="1col"
+          fillWidth
+        >
+          {links.map((link) => (
+            <Link target="_blank" style={{ padding: 'var(--responsive-space-l)' }} key={link.href} href={link.href}>
+              <Flex fillWidth paddingY="8" gap="8" direction="column">
+                <Flex fillWidth gap="12" alignItems="center">
+                  <Text variant="body-strong-m" onBackground="neutral-strong">
+                    {link.title}
+                  </Text>
+                  <Icon size="s" name="arrowUpRight" />
+                </Flex>
+                {link.description && (
+                  <Text variant="body-default-s" onBackground="neutral-weak">
+                    {link.description}
+                  </Text>
+                )}
+              </Flex>
+            </Link>
+          ))}
+        </Grid>
+      </Flex>
+    </Flex>
+  );
+}
