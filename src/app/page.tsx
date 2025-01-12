@@ -21,7 +21,7 @@ export default function Home() {
 
     const interval = setInterval(() => {
       if (index < fullText.length) {
-        setDisplayText(fullText.substring(0, index + 1));
+        setDisplayText(prevText => prevText + fullText.charAt(index));
         index++;
       } else {
         clearInterval(interval); // Stop the animation when complete
