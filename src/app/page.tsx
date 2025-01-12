@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
-// Flex bileşeni tanımlandı
+// Basit Flex bileşeni tanımlandı
 const Flex = ({ children, style = {}, ...props }) => (
   <div style={{ display: "flex", ...style }} {...props}>
     {children}
@@ -11,14 +12,13 @@ const Flex = ({ children, style = {}, ...props }) => (
 
 export default function Home() {
   const links = [
-    { href: "http://explorer.hibunode.com", title: "Explorer" },
-    { href: "http://www.hibunode.com/", title: "Services" },
-    { href: "http://www.hibunode.com/", title: "Introductions" },
+    { href: "http://explorer.hibunode.com", title: "Explorer", description: "" },
+    { href: "http://www.hibunode.com/", title: "Services", description: "" },
+    { href: "http://www.hibunode.com/", title: "Introductions", description: "" },
   ];
 
   const fullText =
     "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
-
   const [displayText, setDisplayText] = useState("");
 
   useEffect(() => {
@@ -29,9 +29,9 @@ export default function Home() {
         setDisplayText((prev) => prev + fullText[index]);
         index++;
       } else {
-        clearInterval(interval);
+        clearInterval(interval); // Yazı tamamlansa bileşen durur
       }
-    }, 50);
+    }, 50); // Her harf için 50ms gecikme
 
     return () => clearInterval(interval);
   }, []);
@@ -41,89 +41,53 @@ export default function Home() {
       style={{
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        height: "100vh",
-        background: "url(/background.jpg) no-repeat center center",
+        background: 'url("/background.jpg")',
         backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        padding: "20px",
       }}
     >
-      {/* Sosyal medya butonları */}
-      <Flex style={{ position: "absolute", top: "20px", right: "20px", gap: "12px" }}>
-        <a href="https://github.com/brkcinar" style={{ color: "white", textDecoration: "none" }}>
+      {/* Sosyal Medya Butonları */}
+      <Flex style={{ justifyContent: "flex-end", width: "100%", gap: "12px" }}>
+        <a href="https://github.com/brkcinar" style={{ textDecoration: "none", color: "white" }}>
           GitHub
         </a>
-        <a href="https://x.com/brkkcinar" style={{ color: "white", textDecoration: "none" }}>
+        <a href="https://x.com/brkkcinar" style={{ textDecoration: "none", color: "white" }}>
           Twitter
         </a>
-        <a href="https://www.t.me/brkcinar" style={{ color: "white", textDecoration: "none" }}>
+        <a href="https://www.t.me/brkcinar" style={{ textDecoration: "none", color: "white" }}>
           Telegram
         </a>
       </Flex>
 
-      {/* Logo */}
-      <Flex
-        style={{
-          position: "absolute",
-          top: "100px",
-          left: "16.6%", // Sayfayı 6'ya bölmek için %16.6 (1/6)
-          transform: "translateX(-50%)",
-        }}
-      >
-        <img
-          src="/coconode.png"
-          alt="My Logo"
-          style={{
-            width: "250px",
-            height: "auto",
-          }}
-        />
-      </Flex>
-
-      {/* Hareketli Yazı */}
-      <Flex style={{ flexDirection: "column", alignItems: "center", marginTop: "180px", padding: "20px" }}>
-        <p
-          style={{
-            color: "white",
-            fontSize: "1.5rem",
-            lineHeight: "2rem",
-            textAlign: "center",
-            fontFamily: "monospace",
-          }}
-        >
-          {displayText}
-        </p>
-      </Flex>
-
-      {/* Linkler */}
-      <Flex
-        style={{
-          marginTop: "50px",
-          width: "80%",
-          justifyContent: "space-around",
-          alignItems: "center",
-          flexWrap: "wrap",
-          background: "rgba(0, 0, 0, 0.7)",
-          borderRadius: "8px",
-          padding: "16px",
-        }}
-      >
-        {links.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            target="_blank"
-            rel="noreferrer"
+      {/* Ana İçerik */}
+      <Flex style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+        <Flex style={{ justifyContent: "center", flex: 1 }}>
+          <img
+            src="/coconode.png"
+            alt="My Logo"
             style={{
-              color: "white",
-              textDecoration: "none",
-              fontSize: "1.2rem",
-              margin: "10px",
+              width: "200px",
+              height: "auto",
+              position: "relative",
+              left: "-10%", // Sola doğru biraz kaydırıldı
             }}
-          >
-            {link.title}
-          </a>
-        ))}
+          />
+        </Flex>
+
+        <Flex style={{ justifyContent: "center", flex: 2 }}>
+          <h1 style={{ fontFamily: "monospace", color: "white", textAlign: "center" }}>{displayText}</h1>
+        </Flex>
+      </Flex>
+
+      {/* Alt Menü */}
+      <Flex style={{ marginTop: "40px", width: "100%", justifyContent: "center" }}>
+        <div>
+          <h2 style={{ color: "white" }}>Mainnet</h2>
+          <p style={{ color: "white" }}>Dimension</p>
+        </div>
       </Flex>
     </Flex>
   );
