@@ -14,7 +14,7 @@ export default function Home() {
 
   const fullText =
     "Blockchain technology is reshaping financial systems while offering a vision of independence empowered by digital innovation. As a professional validator in this sector, I take pride in ensuring the reliability of networks and contributing to the growth of the ecosystem.";
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState(''); // Yazı başlangıç değeri boş string
 
   useEffect(() => {
     let index = 0;
@@ -24,9 +24,9 @@ export default function Home() {
         setDisplayText((prev) => prev + fullText[index]);
         index++;
       } else {
-        clearInterval(interval); // Stop the animation when complete
+        clearInterval(interval); // Yazı tamamlanınca durdur
       }
-    }, 50); // 50ms per character
+    }, 50); // 50ms per karakter
 
     return () => clearInterval(interval);
   }, [fullText]);
@@ -61,7 +61,7 @@ export default function Home() {
 
       {/* Ana içerik */}
       <Flex as="section" fillWidth maxWidth={68} direction="row" alignItems="center" flex={1} gap="24">
-        {/* Resmi Sayfanın İlk Çizgisine Konumlandırma */}
+        {/* Sol Üstteki Resim */}
         <Flex
           style={{
             position: 'absolute',
@@ -75,7 +75,7 @@ export default function Home() {
             src="/coconode.png"
             alt="My Logo"
             style={{
-              width: '150px', // Daha büyük resim için genişlik artırıldı
+              width: '200px', // Resmi büyüttük
               height: 'auto',
               borderRadius: '10px',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -83,6 +83,7 @@ export default function Home() {
           />
         </Flex>
 
+        {/* Yazı */}
         <Flex flex={1} alignItems="center" justifyContent="center">
           <Heading
             wrap="balance"
